@@ -17,14 +17,22 @@ public class AuthenticationService : IAuthenticationService
 
     public async Task<AuthenticationData> AuthenticateAsync(string userName, string password)
     {
-        var user = await _userManager.FindByNameAsync(userName);
-        if (user == null)
-            throw new ApiException("Invalid Username or Password");
-        
-        var passwordIsCorrect = await _userManager.CheckPasswordAsync(user, password);
-        if (passwordIsCorrect == false)
-            throw new ApiException("Invalid Username or Password");
+        try
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            if (user == null)
+                throw new ApiException("Неверный Логин или Пароль");
 
-        return new AuthenticationData(user.Id);
+            var passwordIsCorrect = await _userManager.CheckPasswordAsync(user, password);
+            if (passwordIsCorrect == false)
+                throw new ApiException("Неверный Логин или Пароль");
+
+            return new AuthenticationData(user.Id);
+        }
+        catch (Exception ex)
+        {
+            throw new ApiException(ex.Message);
+        }
+        
     }
 }

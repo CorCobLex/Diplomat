@@ -25,10 +25,10 @@ public static class ServicesRegistration
         services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<IAccountService, AccountService>();
 
-        // var connectionString = configuration.GetConnectionString("DefaultConnection");
-        // services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connectionString).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
-        services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("db")
-                                                                      .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+        //services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("db")
+         //                                                             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
         services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();

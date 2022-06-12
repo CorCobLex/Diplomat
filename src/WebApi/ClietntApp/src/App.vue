@@ -1,12 +1,39 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/authorizate">About</router-link>
-    </nav>
+    <nav></nav>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isLoading: true,
+      isFullPage: true,
+    };
+  },
+
+  computed: {
+    loading: {
+      get() {
+        return this.$store.state.isBusy;
+      },
+    },
+  },
+
+  methods: {
+    open() {
+      const loadingComponent = this.$buefy.loading.open({
+        container: this.isFullPage ? null : this.$refs.element.$el,
+      });
+      if (this.$store.state.isBusy) {
+        setTimeout(() => loadingComponent.close(), 3 * 1000);
+      }
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

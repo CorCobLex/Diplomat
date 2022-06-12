@@ -2,7 +2,12 @@
   <div class="columns">
     <div class="column"></div>
     <form class="column is-four doda" onsubmit="return false">
-      <b-field label="Email" horizontal>
+      <b-notification :closable="false">
+        Введите логин и пароль
+        <b-loading :is-full-page="isFullPage" v-model="isLoading"></b-loading>
+      </b-notification>
+
+      <b-field label="Login" horizontal>
         <b-input v-model="login" maxlength="30" />
       </b-field>
       <b-field label="Password" horizontal>
@@ -32,8 +37,8 @@ export default {
 
   methods: {
     async authorization() {
+      this.$store.state.isBusy = true;
       var result = await AuthService.login(this.login, this.password);
-      console.log(result);
       if (result.data.isSuccessful) {
         sessionStorage.setItem(
           "accessToken",
@@ -44,6 +49,8 @@ export default {
           result.data.data.refreshToken.token
         );
         this.$router.push("/");
+      } else {
+        this.$store.state.isBusy = false;
       }
     },
   },

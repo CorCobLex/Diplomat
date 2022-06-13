@@ -9,7 +9,9 @@ export default {
   },
 
   getAccessToken() {
-    return sessionStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
+    console.log(token);
+    return token;
   },
 
   async renewToken() {

@@ -4,7 +4,6 @@
     <form class="column is-four doda" onsubmit="return false">
       <b-notification :closable="false">
         Введите логин и пароль
-        <b-loading :is-full-page="isFullPage" v-model="isLoading"></b-loading>
       </b-notification>
 
       <b-field label="Login" horizontal>

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <nav></nav>
     <router-view />
   </div>
 </template>
@@ -13,7 +12,6 @@ export default {
       isFullPage: true,
     };
   },
-
   computed: {
     loading: {
       get() {
@@ -21,7 +19,6 @@ export default {
       },
     },
   },
-
   methods: {
     open() {
       const loadingComponent = this.$buefy.loading.open({
@@ -36,24 +33,20 @@ export default {
 </script>
 
 <style lang="scss">
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  background: #303540;
+  overflow-y: hidden;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  overflow-y: hidden;
 }
 </style>

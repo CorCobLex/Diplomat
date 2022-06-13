@@ -36,7 +36,7 @@ function createAxiosResponseInterceptor() {
     (response) => response,
     (error) => {
       const status = error.response ? error.response.status : null;
-
+      console.log("222", error);
       if (status !== 401) {
         return Promise.reject(error);
       }
@@ -50,10 +50,12 @@ function createAxiosResponseInterceptor() {
           if (token) {
             error.response.config.headers["Authorization"] = `Bearer ${token}`;
             return axios(error.response.config);
+          } else {
+            router.push("/authorizate");
           }
         })
         .catch((error) => {
-          localStorage.clear();
+          sessionStorage.clear();
           router.push("/authorizate");
           return Promise.reject(error);
         })

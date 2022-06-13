@@ -1,28 +1,33 @@
 <template>
   <section>
-    <b-dropdown aria-role="list">
-      <template #trigger="{ active }">
-        <b-button
-          label="Click me!"
-          type="is-primary"
-          :icon-right="active ? 'menu-up' : 'menu-down'"
-        />
-      </template>
-
-      <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
-      <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
-      <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
-    </b-dropdown>
+    <time-select />
+    <bar-chart-vue class="chart" />
   </section>
 </template>
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import BarChartVue from "@/components/BarChart.vue";
+import TimeSelect from "@/components/ButtonsTime.vue";
 export default {
-  name: "HomeView",
   components: {
-    HelloWorld,
+    BarChartVue,
+    TimeSelect,
+  },
+  data() {
+    return {};
+  },
+
+  mounted() {
+    this.$store.state.isBusy = false;
   },
 };
 </script>
+<style scoped>
+.chart {
+  margin: 2%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  text-decoration-color: blue;
+}
+</style>

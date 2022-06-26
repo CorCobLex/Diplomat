@@ -57,6 +57,10 @@ export default {
 </script>
 
 <style>
+* {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
 .doda {
   margin-top: 20%;
 }

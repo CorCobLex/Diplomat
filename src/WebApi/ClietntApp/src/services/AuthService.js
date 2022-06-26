@@ -10,7 +10,7 @@ export default {
 
   getAccessToken() {
     const token = sessionStorage.getItem("accessToken");
-    console.log(token);
+
     return token;
   },
 

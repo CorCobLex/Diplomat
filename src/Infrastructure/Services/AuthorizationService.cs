@@ -12,11 +12,15 @@ public class AuthorizationService : IAuthorizationService
     private readonly ITokenFactory _tokenFactory;
     private readonly IRefreshTokenValidator _refreshTokenValidator;
 
-    public AuthorizationService(IAuthenticationService authenticationService, ITokenFactory tokenFactory, IRefreshTokenValidator refreshTokenValidator)
+    public AuthorizationService(IAuthenticationService authenticationService, 
+        ITokenFactory tokenFactory, IRefreshTokenValidator refreshTokenValidator)
     {
-        _authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
-        _tokenFactory = tokenFactory ?? throw new ArgumentNullException(nameof(tokenFactory));
-        _refreshTokenValidator = refreshTokenValidator ?? throw new ArgumentNullException(nameof(refreshTokenValidator));
+        _authenticationService = authenticationService ?? 
+                                 throw new ArgumentNullException(nameof(authenticationService));
+        _tokenFactory = tokenFactory ?? 
+                        throw new ArgumentNullException(nameof(tokenFactory));
+        _refreshTokenValidator = refreshTokenValidator ?? 
+                                 throw new ArgumentNullException(nameof(refreshTokenValidator));
     }
     
     public async Task<Response<AuthorizationData>> AuthorizeAsync(string userName, string password)

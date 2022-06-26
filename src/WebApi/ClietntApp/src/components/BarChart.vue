@@ -1,5 +1,5 @@
 <template>
-  <div class="bar">
+  <div>
     <LineChartGenerator
       :chart-options="chartOptions"
       :chart-data="chartData"
@@ -88,7 +88,6 @@ export default {
         responsive: true,
         legend: {
           labels: {
-            // This more specific font property overrides the global property
             font: {
               size: 12,
               lineHeight: 2,
@@ -114,13 +113,13 @@ export default {
         {
           fill: true,
           type: "line",
-          pointBackgroundColor: "gray",
+          pointBackgroundColor: "black",
           pointBorderColor: "white",
           backgroundColor: (ctx) => {
             const canvas = ctx.chart.ctx;
             const gradient = canvas.createLinearGradient(0, 0, 0, 700);
 
-            gradient.addColorStop(0.5, "#6C0505");
+            gradient.addColorStop(0.5, "#056C1B");
             gradient.addColorStop(1, "rgba(54, 49, 49, 0.62)");
 
             return gradient;
@@ -139,5 +138,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

@@ -37,7 +37,7 @@ html,
 body {
   height: 100vh;
   width: 100vw;
-  background: #303540;
+  background: #f1f1f1;
   overflow-y: hidden;
 }
 
